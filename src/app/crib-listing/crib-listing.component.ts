@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { cribs } from './../data/cribs';
+import { CribsService } from '../cribs.service';
 
 @Component({
   selector: 'app-crib-listing',
@@ -8,11 +8,16 @@ import { cribs } from './../data/cribs';
 })
 export class CribListingComponent implements OnInit {
 
-  cribs: Array<any> = cribs;
-  constructor() { }
+  cribs: Array<any>;
+  error: string;
+  constructor(private cribsService: CribsService) { }
 
   ngOnInit() {
-    
+    this.cribsService.getAllCribs()
+    .subscribe(
+      data => this.cribs = data,
+      error => console.log(error.statusText)      
+    );
   }
 
 }

@@ -1,0 +1,52 @@
+<div class="thumbnail">
+  <img src="assets/images/{{ crib.image }}.jpg" alt="">
+    <!-- <h3>{{ crib.address }}</h3>
+    <h4> {{ crib.price }}</h4>
+    <p> {{ crib.type }}</p> -->
+    <div class="ng">
+      <div *ngIf="!crib.showDeatils">
+        <h3>
+          <span class="label label-primary">
+            {{ crib.type }}
+          </span>
+        </h3>
+        <h3>
+          <i class="glyphicon glyphicon-tag">            
+          </i>
+          {{ crib.price | currency:'USD':'symbol-narrow'}}
+        </h3>
+        <h4>
+          <i class="glyphicon glyphicon-home"></i>
+          {{ crib.address }}
+        </h4>
+        <hr>
+        <button 
+        class="btn btn-success"
+        *ngIf="!crib.showDeatils"
+        (click)="crib.showDeatils=!crib.showDeatils"
+        >Details
+      </button>
+      </div>
+
+      <div *ngIf="crib.showDeatils">
+        <h4>
+          <span class="label label-primary">
+            Beds: {{ crib.bedrooms }}
+          </span>
+          <span class="label label-primary">
+              Baths: {{ crib.bathrooms }}
+            </span>
+            <span class="label label-primary">
+                Sqrt: {{ crib.area }}
+              </span>
+        </h4>
+        <p>{{ crib.description }}</p>
+        <hr>
+        <button 
+        class="btn btn-danger"
+        *ngIf="crib.showDeatils"
+        (click)="crib.showDeatils=!crib.showDeatils"
+        >Close</button>
+      </div>
+    </div>
+</div> 
